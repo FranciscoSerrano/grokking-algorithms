@@ -1,18 +1,24 @@
-new_list = list(range(1, 257))
+def binary_search(numbers, number_to_find):
+	low = 0
+	high = len(numbers) - 1
+	while low <= high:
+		middle = low + (high - low) // 2
 
-def binary_search(alist, item):
-    low = 0
-    high = len(alist) - 1
-    for i in range(len(new_list)):
-        mid = int(high/2)
-        guess = alist[mid]
-        if guess == item:
-            return mid
-        elif guess > item:
-            high = mid - 1
-        else: 
-            low = mid + 1
-    return None
+		if numbers[middle] == number_to_find:
+			return middle
+		elif numbers[middle] < number_to_find:
+			low = middle + 1
+		else:
+			high = middle - 1
+	return -1
 
-print(binary_search(new_list, 8))
+numbers = [7, 9, 14, 22, 34]
+number_to_find = 22
+
+final = binary_search(numbers, number_to_find)
+
+if final == -1:
+	print("\nThis item was not found in the list.")
+else:
+	print("\nThe number " + str(number_to_find) + " was found at index position " + str(final) + ".")
 
